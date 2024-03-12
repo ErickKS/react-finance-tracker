@@ -5,13 +5,13 @@ import { useContextSelector } from "use-context-selector";
 import * as z from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import clsx from "clsx";
 import { CircleArrowDown, CircleArrowUp, X } from "lucide-react";
 
 import { TransactionsContext } from "../contexts/transactions-context";
 
 import { Button } from "./button";
 import { Input } from "./input";
-import { ButtonTransactionType } from "./button-transaction-type";
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -76,15 +76,32 @@ export function NewTransactionModal() {
                 name="type"
                 render={({ field }) => (
                   <RadioGroup.Root onValueChange={field.onChange} value={field.value} className="flex gap-4 mt-6 mb-8">
-                    <ButtonTransactionType variant="income" value={"income"}>
+                    <RadioGroup.Item
+                      className={clsx(
+                        "flex flex-1 justify-center items-center gap-2 h-12 px-5 border border-gray rounded-md outline-none transition-all duration-200",
+                        "font-medium",
+                        "focus-visible:border-white data-[state=unchecked]:hover:border-white data-[state=checked]:bg-gray",
+                        "data-[state=checked]:text-green"
+                      )}
+                      value={"income"}
+                    >
                       <CircleArrowUp size={20} />
                       Income
-                    </ButtonTransactionType>
+                    </RadioGroup.Item>
 
-                    <ButtonTransactionType variant="outcome" value={"outcome"}>
+                    <RadioGroup.Item
+                      className={clsx(
+                        "flex flex-1 justify-center items-center gap-2 h-12 px-5 border border-gray rounded-md outline-none transition-all duration-200",
+                        "font-medium",
+                        "focus-visible:border-white data-[state=unchecked]:hover:border-white data-[state=checked]:bg-gray",
+
+                        "data-[state=checked]:text-red"
+                      )}
+                      value={"outcome"}
+                    >
                       <CircleArrowDown size={20} />
                       Outcome
-                    </ButtonTransactionType>
+                    </RadioGroup.Item>
                   </RadioGroup.Root>
                 )}
               />
