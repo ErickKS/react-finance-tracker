@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body * {
-  font: 400 1rem Roboto, sans-serif;
+  font: 400 1rem Inter, sans-serif;
 }
 
 input[type="number"]::-webkit-inner-spin-button {

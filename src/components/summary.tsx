@@ -1,39 +1,41 @@
-import { CircleArrowUp, CircleArrowDown, DollarSign } from "lucide-react";
+import { Banknote, CircleArrowDown, CircleArrowUp } from "lucide-react";
 
 import { useSummary } from "../hooks/useSummary";
 import { priceFormatter } from "../utils/formatter";
+
+import { SummaryRoot, SummaryHeader, SummaryPrice } from "./summary-card";
 
 export function Summary() {
   const summary = useSummary();
 
   return (
-    <section className="grid grid-cols-3 gap-8 items-center max-w-5xl mx-auto -mt-20 px-5">
-      <div className="flex flex-col gap-4 py-6 px-8 bg-gray-600 rounded-md">
-        <header className="flex justify-between">
-          <span>Income</span>
-          <CircleArrowUp size={28} className="text-green-300" />
-        </header>
+    <section className=" flex items-center gap-4 overflow-x-scroll max-w-5xl mx-auto mt-10 px-5 lg:grid lg:grid-cols-3 lg:overflow-x-hidden">
+      <SummaryRoot>
+        <SummaryHeader>
+          <span className="font-semibold">Income</span>
+          <CircleArrowUp size={24} strokeWidth={1.5} className="text-green" />
+        </SummaryHeader>
 
-        <span className="text-3xl text-gray-100 font-medium">{priceFormatter.format(summary.income)}</span>
-      </div>
+        <SummaryPrice price={priceFormatter.format(summary.income)} />
+      </SummaryRoot>
 
-      <div className="flex flex-col gap-4 py-6 px-8 bg-gray-600 rounded-md">
-        <header className="flex justify-between">
-          <span>Outcome</span>
-          <CircleArrowDown size={28} className="text-red-300" />
-        </header>
+      <SummaryRoot>
+        <SummaryHeader>
+          <span className="font-semibold">Outcome</span>
+          <CircleArrowDown size={24} strokeWidth={1.5} className="text-red" />
+        </SummaryHeader>
 
-        <span className="text-3xl text-gray-100 font-medium">{priceFormatter.format(summary.outcome)}</span>
-      </div>
+        <SummaryPrice price={priceFormatter.format(summary.outcome)} />
+      </SummaryRoot>
 
-      <div className="flex flex-col gap-4 py-6 px-8 bg-green-700 rounded-md">
-        <header className="flex justify-between">
-          <span>Total</span>
-          <DollarSign size={28} className="text-white" />
-        </header>
+      <SummaryRoot>
+        <SummaryHeader>
+          <span className="font-semibold">Total</span>
+          <Banknote size={24} strokeWidth={1.5} className="text-white" />
+        </SummaryHeader>
 
-        <span className="text-3xl text-gray-100 font-medium">{priceFormatter.format(summary.total)}</span>
-      </div>
+        <SummaryPrice price={priceFormatter.format(summary.total)} />
+      </SummaryRoot>
     </section>
   );
 }

@@ -10,11 +10,11 @@ export function ButtonTransactionType({ variant, children, ...props }: ButtonTra
   return (
     <RadioGroup.Item
       className={clsx(
-        "flex flex-1 justify-center items-center gap-3 h-12 px-5 bg-gray-700 rounded-md outline-none transition-all duration-200",
-        "text-gray-300 font-medium",
-        "ring-2 ring-transparent focus-visible:ring-white data-[state=unchecked]:hover:bg-gray-600 data-[state=checked]:text-white",
-        { "data-[state=checked]:bg-green-700": variant === "income" },
-        { "data-[state=checked]:bg-red-500": variant === "outcome" }
+        "flex flex-1 justify-center items-center gap-2 h-12 px-5 border border-gray rounded-md outline-none transition-all duration-200",
+        "font-medium",
+        "focus-visible:border-white data-[state=unchecked]:hover:border-white data-[state=checked]:bg-gray",
+        { "data-[state=checked]:text-green": variant === "income" },
+        { "data-[state=checked]:text-red": variant === "outcome" }
       )}
       {...props}
     >

@@ -9,14 +9,11 @@ export function Button({ variant, children, ...props }: ButtonProps) {
   return (
     <button
       className={clsx(
-        "flex justify-center items-center gap-3 h-12 px-5 rounded-md outline-none transition-all duration-200",
-        "font-medium text-center",
+        "flex justify-center items-center gap-2 h-10 px-4 rounded-md outline-none transition-all duration-200",
+        "text-sm font-medium text-center",
         "disabled:opacity-70 disabled:cursor-not-allowed",
-        { "bg-green-500 text-white ring-2 ring-transparent focus-visible:ring-white hover:bg-green-700": variant === "primary" },
-        {
-          "border-2 border-green-500 text-green-500 hover:bg-green-500 hover:border-green-500 hover:text-white focus-visible:bg-green-500 focus-visible:border-green-500 focus-visible:text-white":
-            variant === "outline",
-        }
+        { "bg-white text-black focus-visible:bg-white/80 hover:bg-white/80": variant === "primary" },
+        { "border border-gray hover:bg-gray focus-visible:bg-gray": variant === "outline" }
       )}
       {...props}
     >

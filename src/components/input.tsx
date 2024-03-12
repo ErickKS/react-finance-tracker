@@ -9,8 +9,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ type, ...props }
       ref={ref}
       type={type}
       className={clsx(
-        "h-12 w-full px-4 bg-gray-900 rounded-md border-2 border-gray-900 outline-none transition-all",
-        "placeholder:text-gray-500 focus:border-green-500"
+        "h-10 w-full px-3 bg-transparent border border-gray rounded-md outline-none transition-all",
+        "text-sm",
+        "placeholder:text-gray-light focus:border-white"
       )}
       {...props}
     />
