@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { useContextSelector } from "use-context-selector";
 import * as z from "zod";
+import { useContextSelector } from "use-context-selector";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
@@ -24,6 +24,10 @@ type newTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 
 export function NewTransactionModal() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  useEffect(() => {
+    reset();
+  }, [isDialogOpen]);
 
   const createTransaction = useContextSelector(TransactionsContext, (context) => {
     return context.createTransaction;
@@ -80,8 +84,8 @@ export function NewTransactionModal() {
                       className={clsx(
                         "flex flex-1 justify-center items-center gap-2 h-12 px-5 border border-gray rounded-md outline-none transition-all duration-200",
                         "font-medium",
-                        "focus-visible:border-white data-[state=unchecked]:hover:border-white data-[state=checked]:bg-gray",
-                        "data-[state=checked]:text-green"
+                        "focus-visible:border-white data-[state=unchecked]:hover:border-white",
+                        "data-[state=checked]:border-green data-[state=checked]:bg-gradient-to-b data-[state=checked]:from-green/10 hover:to-transparent data-[state=checked]:text-green"
                       )}
                       value={"income"}
                     >
@@ -93,9 +97,8 @@ export function NewTransactionModal() {
                       className={clsx(
                         "flex flex-1 justify-center items-center gap-2 h-12 px-5 border border-gray rounded-md outline-none transition-all duration-200",
                         "font-medium",
-                        "focus-visible:border-white data-[state=unchecked]:hover:border-white data-[state=checked]:bg-gray",
-
-                        "data-[state=checked]:text-red"
+                        "focus-visible:border-white data-[state=unchecked]:hover:border-white",
+                        "data-[state=checked]:border-red data-[state=checked]:bg-gradient-to-b data-[state=checked]:from-red/10 hover:to-transparent data-[state=checked]:text-red"
                       )}
                       value={"outcome"}
                     >
